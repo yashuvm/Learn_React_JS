@@ -1,0 +1,497 @@
+# React.js Interview Preparation – Complete Notes
+
+## 1. What is React.js?
+
+React.js is an open-source JavaScript library developed by Meta (Facebook) for building fast, interactive, and reusable user interfaces (UI), especially for single-page applications (SPAs).
+
+React follows a component-based architecture, which allows developers to divide an application into small, reusable components.
+
+### Library vs Framework
+
+| Library | Framework |
+|---|---|
+| Collection of functions and tools used to perform specific tasks. | Provides a predefined structure for building applications. |
+| Developer controls the application flow. | Framework generally controls the application flow. |
+| More flexibility. | More predefined conventions. |
+| Examples: React, Lodash, jQuery. | Examples: Angular, Next.js (React framework). |
+
+Example: React is a JavaScript library, whereas Next.js is a React-based framework.
+
+## 2. Key Features of React.js
+
+1. Component-Based Architecture: Divides UI into small, reusable components.
+2. Virtual DOM: React uses an in-memory representation of the UI to calculate necessary DOM updates.
+3. JSX: Allows developers to write HTML-like syntax inside JavaScript.
+4. One-Way Data Binding: Data generally flows from parent components to child components through props.
+5. Hooks: Functions that allow functional components to use state and other React features.
+6. Reusable Components: Components can be reused across multiple parts of an application.
+7. Declarative UI: Developers describe what the UI should look like, and React handles updating it.
+
+Note: SEO is not a core feature of React itself. Frameworks like Next.js provide additional SEO capabilities through server-side rendering and static generation.
+
+## 3. What is JSX?
+
+JSX (JavaScript XML) is a syntax extension for JavaScript that allows developers to write HTML-like code inside JavaScript.
+
+It makes UI code easier to read and maintain.
+
+Example:
+
+```jsx
+function App() {
+  return (
+    <div>
+      <h1>Hello World</h1>
+      <p>Welcome to React.js</p>
+    </div>
+  );
+}
+
+export default App;
+```
+
+Key Points:
+- JSX combines JavaScript expressions with HTML-like syntax.
+- JSX must return a single parent element (or Fragment).
+- JavaScript expressions can be written inside {}.
+- JSX is transformed into JavaScript instructions that React understands.
+
+## 4. What are State and Props in React?
+
+State and props are used to manage and pass data in React applications.
+
+### State
+
+- State is used to manage data inside a component.
+- State is updated through its setter function.
+- When state changes, React schedules a re-render.
+- State is managed using the useState hook in functional components.
+
+Example:
+
+```jsx
+import { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h2>{count}</h2>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+```
+
+### Props
+
+- Props are used to pass data from parent components to child components.
+- Props are read-only for the receiving component.
+- They help make components reusable.
+
+Example:
+
+```jsx
+function Child({ name }) {
+  return <h1>Hello {name}</h1>;
+}
+
+function Parent() {
+  return <Child name="Yashu" />;
+}
+```
+
+### Difference Between State and Props
+
+| State | Props |
+|---|---|
+| Managed inside a component. | Passed from parent to child. |
+| Updated using setter functions. | Read-only for child components. |
+| Can trigger re-rendering. | Changes can trigger re-rendering. |
+| Used for internal data management. | Used for component communication. |
+
+## 5. Types of React Components
+
+React primarily supports two traditional component styles.
+
+### A. Functional Components
+
+Functional components are JavaScript functions that return JSX.
+
+Initially, they were commonly used for simpler components. After Hooks were introduced in React 16.8, functional components could also manage state and use lifecycle-related functionality.
+
+Example:
+
+```jsx
+import { useState } from "react";
+
+function User() {
+  const [name, setName] = useState("Yashu");
+
+  return (
+    <div>
+      <h1>{name}</h1>
+      <button onClick={() => setName("Verma")}>
+        Change Name
+      </button>
+    </div>
+  );
+}
+```
+
+Advantages:
+- Simple and readable code.
+- Supports React Hooks.
+- No need to use the this keyword.
+- Easier to reuse logic through custom Hooks.
+
+### B. Class Components
+
+Class components use ES6 JavaScript classes and extend React.Component.
+
+They use lifecycle methods to manage component lifecycle events.
+
+Example:
+
+```jsx
+import React from "react";
+
+class User extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "Yashu"
+    };
+  }
+
+  componentDidMount() {
+    console.log("Component mounted");
+  }
+
+  componentDidUpdate() {
+    console.log("Component updated");
+  }
+
+  componentWillUnmount() {
+    console.log("Component unmounted");
+  }
+
+  render() {
+    return <h1>{this.state.name}</h1>;
+  }
+}
+
+export default User;
+```
+
+Important Lifecycle Methods:
+
+- componentDidMount(): Called after the component mounts.
+- componentDidUpdate(): Called after an update.
+- componentWillUnmount(): Called before the component is removed.
+
+### Difference Between Functional and Class Components
+
+| Functional Component | Class Component |
+|---|---|
+| Uses JavaScript functions. | Uses ES6 classes. |
+| Uses Hooks. | Uses lifecycle methods. |
+| Does not use this. | Uses this keyword. |
+| Generally simpler and preferred for new code. | Common in older React applications. |
+
+## 6. What are React Hooks?
+
+Hooks are special functions introduced in React 16.8 that allow functional components to use state, context, refs, and other React features.
+
+### Important React Hooks
+
+| Hook | Purpose |
+|---|---|
+| useState | Manages component state. |
+| useEffect | Handles side effects such as API calls and subscriptions. |
+| useRef | Stores mutable references and accesses DOM elements. |
+| useContext | Accesses data from React Context. |
+| useMemo | Memoizes calculated values. |
+| useCallback | Memoizes function references. |
+| useReducer | Manages complex state logic. |
+| useLayoutEffect | Runs an effect after DOM mutations but before browser repaint. |
+
+### Example: useState
+
+```jsx
+const [count, setCount] = useState(0);
+```
+
+### Example: useEffect
+
+```jsx
+useEffect(() => {
+  console.log("Component mounted");
+
+  return () => {
+    console.log("Component unmounted");
+  };
+}, []);
+```
+
+## 7. Difference Between useEffect and useLayoutEffect
+
+Both Hooks are used to perform side effects in functional components, but their execution timing is different.
+
+| useEffect | useLayoutEffect |
+|---|---|
+| Runs after React commits DOM changes. | Runs after DOM mutations but before browser repaint. |
+| Does not block browser painting in normal use. | Blocks browser painting until its callback completes. |
+| Suitable for API calls and subscriptions. | Suitable for measuring DOM elements and layout adjustments. |
+| Preferred for most side effects. | Used when synchronous layout work is required. |
+
+### Execution Flow
+
+useEffect:
+
+1. Component renders.
+2. DOM gets updated.
+3. Browser paints the UI.
+4. useEffect executes.
+
+useLayoutEffect:
+
+1. Component renders.
+2. DOM gets updated.
+3. useLayoutEffect executes.
+4. Browser paints the UI.
+
+Interview Example:
+
+If you want to calculate the height or width of a DOM element before the browser displays the updated screen, you can use useLayoutEffect.
+
+## 8. What is Virtual DOM?
+
+The Virtual DOM is an in-memory representation of the UI that React uses to determine which changes need to be applied to the actual DOM.
+
+### Working Process
+
+1. React renders the component and creates a representation of the UI.
+2. When state or props change, React renders the component again.
+3. React compares the previous and new UI representations.
+4. This comparison process is called diffing.
+5. React calculates the required DOM updates.
+6. React commits those changes to the actual DOM.
+
+Advantages:
+
+- Efficient DOM updates.
+- Avoids unnecessary DOM mutations.
+- Helps manage complex UI updates.
+- Provides a declarative programming model.
+
+Important: React does not necessarily create a completely new Virtual DOM tree from scratch for every update in the simplistic sense. It performs reconciliation through its rendering process.
+
+## 9. How to Prevent Unnecessary Re-rendering in React?
+
+React provides several techniques to optimize rendering performance.
+
+### A. React.memo()
+
+React.memo() is used to memoize a functional component.
+
+It prevents re-rendering when its props have not changed (using shallow comparison by default).
+
+Example:
+
+```jsx
+const Child = React.memo(function Child({ name }) {
+  console.log("Child rendered");
+
+  return <h1>{name}</h1>;
+});
+```
+
+### B. useMemo()
+
+useMemo() memoizes the result of an expensive calculation.
+
+Example:
+
+```jsx
+const result = useMemo(() => {
+  return expensiveCalculation(num);
+}, [num]);
+```
+
+### C. useCallback()
+
+useCallback() memoizes a function reference between renders unless its dependencies change.
+
+Example:
+
+```jsx
+const handleClick = useCallback(() => {
+  console.log("Button clicked");
+}, []);
+```
+
+### D. shouldComponentUpdate()
+
+Used in class components to control whether a component should re-render.
+
+Example:
+
+```jsx
+shouldComponentUpdate(nextProps, nextState) {
+  return nextState.count !== this.state.count;
+}
+```
+
+### Comparison
+
+| Technique | Purpose |
+|---|---|
+| React.memo | Memoizes component rendering based on props. |
+| useMemo | Memoizes calculated values. |
+| useCallback | Memoizes function references. |
+| shouldComponentUpdate | Controls class component updates. |
+
+Interview Tip: Memoization is not always beneficial. Use it when it avoids meaningful unnecessary work.
+
+## 10. What is Lifting State Up in React?
+
+Lifting State Up means moving state from a child component to its nearest common parent component.
+
+It allows multiple child components to share and synchronize the same data.
+
+Example:
+
+```jsx
+import { useState } from "react";
+
+function Parent() {
+  const [name, setName] = useState("");
+
+  return (
+    <>
+      <ChildInput name={name} setName={setName} />
+      <ChildDisplay name={name} />
+    </>
+  );
+}
+
+function ChildInput({ name, setName }) {
+  return (
+    <input
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
+  );
+}
+
+function ChildDisplay({ name }) {
+  return <h2>Hello {name}</h2>;
+}
+```
+
+Working:
+
+1. Parent component manages the state.
+2. Parent passes state and setter function to the input child.
+3. Child updates the state through the setter.
+4. Parent re-renders and passes updated data to the display child.
+
+## 11. What is React Reconciliation?
+
+Reconciliation is the process React uses to determine what changes are required in the UI when a component's state or props change.
+
+React compares the previous rendered output with the new rendered output and calculates the necessary updates.
+
+### Working Process
+
+1. Component renders for the first time.
+2. State or props change.
+3. React renders the component again.
+4. React compares the previous and new element trees.
+5. React uses its reconciliation algorithm to determine the required changes.
+6. React commits the necessary updates to the actual DOM.
+
+### Important Terms
+
+- Reconciliation: Process of updating the UI based on differences between renders.
+- Diffing Algorithm: Algorithm React uses to compare element trees.
+- Commit Phase: Phase where React applies necessary DOM mutations.
+
+Interview Answer:
+
+Reconciliation is the process of comparing the previous and new React element trees to identify the changes required in the actual DOM, helping React update the UI efficiently.
+
+---
+
+# Additional React.js Topics to Prepare
+
+These are important topics to cover next for a Senior React.js / Full Stack Developer interview.
+
+1. React Fiber Architecture
+2. Controlled vs Uncontrolled Components
+3. Prop Drilling and Context API
+4. Custom Hooks
+5. useReducer vs useState
+6. React Router
+7. React.lazy() and Suspense
+8. Code Splitting and Lazy Loading
+9. Error Boundaries
+10. Keys in React Lists
+11. Event Handling in React
+12. React Strict Mode
+13. Server-Side Rendering (SSR)
+14. Static Site Generation (SSG)
+15. Hydration in Next.js
+16. React Server Components
+17. React Query / TanStack Query
+18. Redux Toolkit
+19. Performance Optimization
+20. React Testing Library and Jest
+
+---
+
+# Useful Websites for Job Search and Startup Research
+
+## 1. Wellfound
+
+Website: https://wellfound.com/
+
+- Find startup jobs.
+- Explore company profiles.
+- Check salary information.
+- Apply directly to startup opportunities.
+- Discover companies hiring developers.
+
+## 2. Y Combinator
+
+Website: https://www.ycombinator.com/
+
+- Discover startups.
+- Explore YC-backed companies.
+- Understand the startup ecosystem.
+- Research new companies and business ideas.
+- Explore potential startup career opportunities.
+
+---
+
+# Interview Preparation Strategy
+
+For Senior React.js / Full Stack Developer interviews, focus on:
+
+1. React Hooks and their internal working.
+2. Virtual DOM and Reconciliation.
+3. React rendering lifecycle.
+4. Performance optimization.
+5. State management using Redux Toolkit and Context API.
+6. Component communication.
+7. API integration and error handling.
+8. React Router and routing strategies.
+9. Next.js rendering strategies.
+10. Practical React coding problems.
+
+**Important:** Always prepare each topic with three things: Definition, Working Process, and Practical Code Example. This will help you explain concepts confidently during technical interviews.
