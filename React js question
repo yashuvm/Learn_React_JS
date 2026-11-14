@@ -75,6 +75,61 @@ moving state from child or nested child to parents
   react compare prvious and new virtaul dom -> upated only changed elements -> changes in the actual dom 
 use diffing alog -> improve performance 
 
+12:  Control vs Uncontrol component 
+        control -> managed by the state -> useState 
+       uncontrol -> managed by the dom -> use by useRef 
+
+
+13 : React keys :
+ Key -> give unique identiy -> to the element -> during the compoent rerender -> to help to know which comp. is changed and which elements is changed . 
+ 
+14 : useEffect : 
+-> it is use in functional component 
+-> to run the side effect of useEffect -> code run after rerender 
+fetch data from api 
+sub and unsubcribe event 
+upate docuemnt file 
+timers 
+sync state with external system 
+
+
+-> Run every render 
+useEffect(() => {
+console.log("Component rendered");
+});
+
+-> Run once an mount -> page first time render -> UI is show on page 
+useEffect(() => {
+console.log("Run once);
+}, []);
+
+
+-> 
+useEffect(() => {.   -> run when value is changed-> state-> props-> action-> value 
+console.log("Run when value is changed);
+}, [count]);
+
+Clean up -> unmount 
+
+useEffect(() => {
+console.log("Run once);
+
+return ()=>{
+
+}
+}, []);
+
+
+=> clean up effect -> reruns 
+=> compoent unmounts 
+
+
+15 : useRef 
+it is use in functional component 
+
+it is use uncontorl component 
+ -> it is use to acess dom -> from input value -> use ref -> we change the value 
+
 
 
 
