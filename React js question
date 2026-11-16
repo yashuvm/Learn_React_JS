@@ -135,6 +135,37 @@ it is use in functional component
 
 it is use uncontorl component 
  -> it is use to acess dom -> from input value -> use ref -> we change the value 
+///
+
+import React, { useRef } from "react";
+
+function App() {
+  const nameRef = useRef(null);
+
+  const handleSubmit = () => {
+    alert(nameRef.current.value);
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        ref={nameRef}
+        defaultValue="Yashu"
+      />
+
+      <button onClick={handleSubmit}>
+        Submit
+      </button>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+//
 
 16 : useMemo / useCallback  / react.memo 
 application performance -> imporve -> 
