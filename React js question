@@ -123,6 +123,12 @@ return ()=>{
 => clean up effect -> reruns 
 => compoent unmounts 
 
+useEffect(() => {})	After every render
+useEffect(() => {}, [])	After initial mount
+useEffect(() => {}, [count])	After mount and when count changes
+useEffect(() => {}, [a, b])	After mount and when a or b changes
+
+
 
 15 : useRef 
 it is use in functional component 
