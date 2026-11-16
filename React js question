@@ -1,4 +1,4 @@
-------------------------------------------
+  ------------------------------------------
 1 : What is react 
 it is js library for building UI components reusable.
 Next js is the framework work on react 
@@ -130,6 +130,98 @@ it is use in functional component
 it is use uncontorl component 
  -> it is use to acess dom -> from input value -> use ref -> we change the value 
 
+16 : useMemo / useCallback  / react.memo 
+application performance -> imporve -> 
+
+useMemo -> optimize the perfomance  -> by memoiziong the value 
+
+const result=useMemo(()=>compute().[dependency])
+
+when compnent is render -> the calculation is run -< every time when comp. is render then value is calculated -> then what we do -> we memoize the value -> using useMemo -> save calculted value in the caches -> so when rerender then -> my value is not again and again calculated -> value is memoized 
+
+-> useCallback 
+it also a hook -> used in functinoal component 
+use to memoize the function 
+
+const handleClick=useCallback(()=>{},[])
+every rerender -> function is not render -> save function in cache -> reduce function rerender -> by memoziing value and memoziing function -> by use callback 
+ if depency ary value is change then it will rerender the function 
+
+
+it will store the value in the cache 
+
+
+17 : React Router 
+
+used to navigation in SPA 
+
+<Route path="/home" elelement={<Home/>}
+going home to about -> with out refersh the page -> react router libraray -> react router dom 
+
+18 : prop drinlling 
+pass data from parent component to nested child component -> if midle compoent do not need the data 
+
+-> to handle this we use contaxt api 
+
+share data globaly -> create globaly state -> and get data in any nested component 
+
+19 : Fragment 
+<> -> called fragment -> element to group -> dom have tree like structure -> if we do not use fragment then unnesscery element are made
+<h1></h1>
+<>
+
+20 ; Conditinoal rednering 
+{isLogin ? <Dashboard> : <Login>}
+
+
+21 : CSR (client side rendering) _> react -> load html and js build ui on the client browser -> browser loads the empty html -> js bundles loads -> react render UI -> fast navigation -> first load  slow-> not good for seo 
+
+
+        SSR (server side rendering) -> html file made on server -> server generate html file -> send to the browser -> req go to the server -> browser recive html file and render -> 
+      next.js -> initial load first -> greate seo -> better performance -> more server load -> navigation is slow 
+
+22 : how to optimize the react app 
+
+useMemo / useCallback 
+lazyloading 
+code splitting -> divide code in the chunks 
+aviod unneccersy rerendering 
+
+React.Memo -> use to memoize the component 
+
+23 ; Hydration 
+attache event listerners to ssr html -> html file show on client -> event listerns -> attach event listerner -> called hydration -> if html code on the brower is not match with the hydration code server then -> hydration error 
+
+24 : Strict Mode 
+index.js 
+
+help to find issue or bug in dev. 
+
+<React.StrictMode>
+<App/>
+</React.StrictMode>
+
+
+25 : React.Memo 
+parent component 
+-> when parent is rerender then child is also rerender 
+but we want only parent is rerender not child 
+then we use react .memo 
+
+child component 
+
+26 : HOC 
+
+function take compnent and reutrn new component 
+
+27 : Suspense 
+<Suspense fallback={<h1>loading...</h1>}
+<Home/>
+</Suspense>
+
+28 : useContext / Redux 
+         hooks / libraray 
+       app is small / app is large 
 
 
 
