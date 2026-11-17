@@ -272,9 +272,15 @@ parent component
 -> when parent is rerender then child is also rerender 
 but we want only parent is rerender not child 
 then we use react .memo 
-
 child component 
-
+/////////
+import React from "react";
+function Child() {
+  console.log("Child component rendered");
+  return <h2>I am Child Component</h2>;
+}
+export default React.memo(Child);
+/////////
 26 : HOC 
 
 function take compnent and reutrn new component 
