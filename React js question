@@ -183,11 +183,39 @@ use to memoize the function
 const handleClick=useCallback(()=>{},[])
 every rerender -> function is not render -> save function in cache -> reduce function rerender -> by memoziing value and memoziing function -> by use callback 
  if depency ary value is change then it will rerender the function 
-
-
 it will store the value in the cache 
+/////useMemo 
+import React, { useMemo, useState } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+  const [number, setNumber] = useState(5);
+
+  const value = useMemo(() => {
+    return number * number;
+  }, [number]);
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+      <button onClick={() => setCount(count + 1)}>Increment Count</button>
+
+      <h2>Number: {number}</h2>
+      <button onClick={() => setNumber(number + 1)}>Increment Number</button>
+
+      <h2>Square: {value}</h2>
+    </div>
+  );
+}
+
+export default App;
+//useMemo are use to memoize the value or cal
 
 
+
+
+
+/////
 17 : React Router 
 
 used to navigation in SPA 
