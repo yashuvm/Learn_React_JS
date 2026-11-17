@@ -1,0 +1,77 @@
+Here is your fast-track continuation on React Hooks and Advanced Concepts consolidated into a single block so you can easily copy it:
+
+### 1. What are React Hooks?
+Functions introduced in React 16.8 that let functional components use state, lifecycle methods, and other React features without writing classes.
+* **Example:** useState, useEffect.
+
+### 2. What are the rules of Hooks?
+1. Only call Hooks at the top level: Never inside loops, conditions, or nested functions.
+2. Only call Hooks from React functional components: Or from your own custom Hooks.
+
+### 3. Explain useState with an example.
+A Hook that lets you add state to functional components. It returns the current state and a function to update it.
+* **Example:**
+  const [count, setCount] = useState(0);
+
+### 4. Explain useEffect and its lifecycle.
+A Hook used to handle side effects (like data fetching, subscriptions, or DOM manipulation) in functional components. It replaces class lifecycle methods like componentDidMount, componentDidUpdate, and componentWillUnmount.
+
+### 5. What is the difference between useEffect and useLayoutEffect?
+* **useEffect:** Runs asynchronously after the browser has painted the screen (doesn't block user rendering).
+* **useLayoutEffect:** Runs synchronously right after DOM mutations, before the browser paints (used to avoid visual layout flickers when measuring DOM dimensions).
+
+### 6. What is the dependency array in useEffect?
+The second argument passed to useEffect ([dep1, dep2]) that tells React when to re-run the effect.
+
+### 7. What happens if we pass an empty dependency array?
+[] tells React to run the effect only once when the component mounts (loads for the first time).
+
+### 8. What happens if we don't pass a dependency array?
+The effect runs after every single render of the component, which can lead to performance issues or infinite loops if it updates state.
+
+### 9. What is cleanup in useEffect?
+A function returned inside useEffect that clears up resources (like event listeners, timers, or subscriptions) when the component unmounts or before the effect runs again.
+* **Example:**
+  useEffect(() => {
+    const timer = setInterval(() => {}, 1000);
+    return () => clearInterval(timer); // Cleanup
+  }, []);
+
+### 10. How do you prevent memory leaks in React?
+By implementing cleanup logic inside useEffect (clearing timers, unsubscribing from sockets, or cancelling fetch requests) so background processes stop running after a component disappears.
+
+### 11. What is useRef?
+A Hook that gives you a mutable object with a .current property that persists across renders without causing re-renders when changed. Often used to directly target DOM elements.
+* **Example:** const inputRef = useRef(null);
+
+### 12. What is the difference between useRef and useState?
+* **useState:** Updating state triggers a re-render of the component.
+* **useRef:** Updating .current does not trigger a re-render.
+
+### 13. What is useMemo?
+A performance optimization Hook that caches the calculated result of an expensive function between renders.
+
+### 14. What is useCallback?
+A performance optimization Hook that caches a function definition between renders, preventing child components from re-rendering unnecessarily due to fresh function references.
+
+### 15. What is the difference between useMemo and useCallback?
+* **useMemo:** Returns a memoized value.
+* **useCallback:** Returns a memoized function.
+
+### 16. What is React.memo?
+A Higher-Order Component (HOC) that wraps a component to memoize its output, skipping re-renders if its props haven't changed.
+
+### 17. Explain the difference between React.memo, useMemo and useCallback.
+* **React.memo:** Memoizes an entire component.
+* **useMemo:** Memoizes a computed value inside a component.
+* **useCallback:** Memoizes a function definition inside a component.
+
+### 18. What is useReducer?
+An alternative to useState for managing complex state logic that involves multiple sub-values or depends on previous actions, handled via a reducer function (state, action).
+
+### 19. What is a custom Hook?
+A JavaScript function whose name starts with use that calls other hooks, allowing you to extract and reuse stateful logic across multiple components.
+* **Example:** useFetch(), useLocalStorage().
+
+### 20. Can we call Hooks inside conditions or loops?
+No! React relies on the exact same call order of Hooks on every single render. Placing them in conditions or loops messes up that order and breaks React's internal state tracking.
