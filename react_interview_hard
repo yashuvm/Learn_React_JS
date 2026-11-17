@@ -1,0 +1,56 @@
+Here is your fast-track crash course on React Performance Optimization and Advanced Concepts consolidated into a single block so you can easily copy it:
+
+### 1. What is memoization in React?
+An optimization technique where you cache the result of expensive calculations or component renders so they aren't re-computed unless their inputs change.
+
+### 2. How do you prevent unnecessary re-renders?
+* Using React.memo for components.
+* Using useMemo for heavy calculations.
+* Using useCallback for functions passed down as props.
+* Structuring state correctly (lifting state down where possible).
+
+### 3. What is React.memo?
+A higher-order component that wraps a component to memoize its output. If its props don't change, React skips re-rendering it.
+
+### 4. What is lazy loading in React?
+Loading parts of your code (like pages or heavy components) only when they are needed, rather than downloading everything upfront on initial page load.
+
+### 5. What is code splitting?
+The practice of breaking your large JavaScript bundle into smaller chunks using dynamic import() and React.lazy, improving initial load time.
+
+### 6. What is Suspense?
+A built-in React component that lets you display a fallback UI (like a loading spinner) while child components or lazy modules are finishing their load process.
+* **Example:**
+  <Suspense fallback={<Spinner />}>
+    <LazyProfile />
+  </Suspense>
+
+### 7. What is useTransition?
+A Hook that lets you mark state updates as non-urgent ("transitions"), allowing the browser to keep high-priority actions (like typing or clicking) smooth and responsive.
+
+### 8. What is useDeferredValue?
+A Hook that lets you defer updating a non-urgent value (like filtered search results), so UI updates like typing animations don't stutter.
+
+### 9. How do you optimize a large list of 10,000 records?
+By using List Virtualization (rendering only the items currently visible in the viewport instead of all 10,000 at once).
+
+### 10. What is list virtualization?
+A technique where only the visible items of a long list are rendered in the DOM, dynamically swapping items in and out as the user scrolls. (Popular libraries: react-window, react-virtualized).
+
+### 11. What is debouncing?
+A technique that delays the execution of a function until a specific amount of time has passed since the last time it was triggered (ideal for search input fields).
+
+### 12. What is throttling?
+A technique that limits the rate at which a function can fire—ensuring it runs at most once every specified period (ideal for window resize or scroll tracking).
+
+### 13. How do you optimize API calls in React?
+* Caching: Using tools like TanStack Query (React Query) or SWR.
+* Debouncing: Stopping rapid duplicate API requests from search bars.
+* Cleanup: Aborting pending fetches when components unmount using AbortController.
+
+### 14. How do you identify unnecessary re-renders?
+By using the React DevTools Profiler extension (recording user actions and checking "Highlight updates when components render") or by using console.count('Render') inside components.
+
+### 15. What is the difference between debounce and throttle?
+* Debounce: Resets the timer every time an event happens; runs only after the user stops doing the action.
+* Throttle: Limits execution to at regular intervals (e.g., once every 300ms) while the action is continuously happening.
