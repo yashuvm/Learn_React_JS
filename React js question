@@ -246,7 +246,6 @@ share data globaly -> create globaly state -> and get data in any nested compone
       next.js -> initial load first -> greate seo -> better performance -> more server load -> navigation is slow 
 
 22 : how to optimize the react app 
-
 useMemo / useCallback 
 lazyloading 
 code splitting -> divide code in the chunks 
